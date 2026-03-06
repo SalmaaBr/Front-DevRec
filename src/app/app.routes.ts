@@ -1,75 +1,54 @@
 import { Routes } from '@angular/router';
+import { AppLayoutComponent } from './shared/layout/app-layout/app-layout.component';
+import { SignInComponent } from './pages/auth-pages/sign-in/sign-in.component';
 import { EcommerceComponent } from './pages/dashboard/ecommerce/ecommerce.component';
 import { FicheComponent } from './pages/fiche/fiche.component';
 import { NotFoundComponent } from './pages/other-page/not-found/not-found.component';
-import { AppLayoutComponent } from './shared/layout/app-layout/app-layout.component';
-import { AlertsComponent } from './pages/ui-elements/alerts/alerts.component';
-import { AvatarElementComponent } from './pages/ui-elements/avatar-element/avatar-element.component';
-import { ButtonsComponent } from './pages/ui-elements/buttons/buttons.component';
-import { ImagesComponent } from './pages/ui-elements/images/images.component';
-import { VideosComponent } from './pages/ui-elements/videos/videos.component';
-import { SignInComponent } from './pages/auth-pages/sign-in/sign-in.component';
+import { AuthCallbackComponent } from './pages/auth-callback/auth-callback.component';
+import { authGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
+  // Page de login
   {
-    path:'',
-    component:AppLayoutComponent,
-    children:[
+    path: 'signin',
+    component: SignInComponent,
+    title: 'Connexion | DevoRecruiter',
+  },
+
+  // Callback Google OAuth → reçoit le token
+  {
+    path: 'auth/callback',
+    component: AuthCallbackComponent,
+  },
+
+  // Routes protégées
+  {
+    path: '',
+    component: AppLayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      // ADMIN_RH + TALENT_ACQUISITION
       {
         path: '',
         component: EcommerceComponent,
-        pathMatch: 'full',
-        title:
-          'Angular Ecommerce Dashboard | TailAdmin - Angular Admin Dashboard Template',
+        title: 'Tableau de bord',
       },
-
-            {
+      // ADMIN_RH + TALENT_ACQUISITION
+      {
         path: 'fiches',
         component: FicheComponent,
-        pathMatch: 'full',
-        title:
-          'Angular Ecommerce Dashboard | TailAdmin - Angular Admin Dashboard Template',
+        title: 'Fiches de poste',
+        canActivate: [roleGuard],
+        data: { roles: ['ADMIN_RH', 'TALENT_ACQUISITION'] },
       },
-
-      // support tickets
-      {
-        path:'alerts',
-        component:AlertsComponent,
-        title:'Angular Alerts Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
-      {
-        path:'avatars',
-        component:AvatarElementComponent,
-        title:'Angular Avatars Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
-      {
-        path:'buttons',
-        component:ButtonsComponent,
-        title:'Angular Buttons Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
-      {
-        path:'images',
-        component:ImagesComponent,
-        title:'Angular Images Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
-      {
-        path:'videos',
-        component:VideosComponent,
-        title:'Angular Videos Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
-    ]
-  },
-  // auth pages
-  {
-    path:'signin',
-    component:SignInComponent,
-    title:'Angular Sign In Dashboard | TailAdmin - Angular Admin Dashboard Template'
+    ],
   },
 
-  // error pages
+  // 404
   {
-    path:'**',
-    component:NotFoundComponent,
-    title:'Angular NotFound Dashboard | TailAdmin - Angular Admin Dashboard Template'
+    path: '**',
+    component: NotFoundComponent,
+    title: '404 | DevoRecruiter',
   },
 ];

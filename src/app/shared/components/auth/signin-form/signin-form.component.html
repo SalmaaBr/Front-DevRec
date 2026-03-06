@@ -1,51 +1,85 @@
-  <div class="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
-    <div>
-      <div class="mb-5 sm:mb-8">
-        <h1 class="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-          Sign In
-        </h1>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          sign in with google!
-        </p>
+<div class="relative flex flex-col justify-center items-center flex-1 w-full max-w-md mx-auto px-6 sm:px-8 py-12 min-h-screen">
+
+  <!-- Contenu principal centré -->
+  <div class="w-full flex flex-col items-center space-y-10">
+
+    <!-- Logo Devoteam centré en haut (aligné avec le form) -->
+    <div class="mb-12 text-center">
+      <img 
+        src="assets/images/logo_devoteam.png" 
+        alt="Devoteam" 
+        class="h-20 sm:h-24 w-auto mb-10 mx-auto block drop-shadow-md"
+      />
+      
+      <div class="flex items-center gap-3 mb-5 justify-center">
+        <div class="w-2 h-10 rounded-full bg-[#c0392b]"></div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          DevoRecruiter
+        </h2>
       </div>
 
-      <!-- OAuth Buttons -->
-     <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
-        <button (click)="loginWithGoogle()" class="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18.7511 10.1944C18.7511 9.47495 18.6915 8.94995 18.5626 8.40552H10.1797V11.6527H15.1003C15.0011 12.4597 14.4654 13.675 13.2749 14.4916L13.2582 14.6003L15.9087 16.6126L16.0924 16.6305C17.7788 15.1041 18.7511 12.8583 18.7511 10.1944Z"
-              fill="#4285F4"
-            />
-            <path
-              d="M10.1788 18.75C12.5895 18.75 14.6133 17.9722 16.0915 16.6305L13.274 14.4916C12.5201 15.0068 11.5081 15.3666 10.1788 15.3666C7.81773 15.3666 5.81379 13.8402 5.09944 11.7305L4.99473 11.7392L2.23868 13.8295L2.20264 13.9277C3.67087 16.786 6.68674 18.75 10.1788 18.75Z"
-              fill="#34A853"
-            />
-            <path
-              d="M5.10014 11.7305C4.91165 11.186 4.80257 10.6027 4.80257 9.99992C4.80257 9.3971 4.91165 8.81379 5.09022 8.26935L5.08523 8.1534L2.29464 6.02954L2.20333 6.0721C1.5982 7.25823 1.25098 8.5902 1.25098 9.99992C1.25098 11.4096 1.5982 12.7415 2.20333 13.9277L5.10014 11.7305Z"
-              fill="#FBBC05"
-            />
-            <path
-              d="M10.1789 4.63331C11.8554 4.63331 12.9864 5.34303 13.6312 5.93612L16.1511 3.525C14.6035 2.11528 12.5895 1.25 10.1789 1.25C6.68676 1.25 3.67088 3.21387 2.20264 6.07218L5.08953 8.26943C5.81381 6.15972 7.81776 4.63331 10.1789 4.63331Z"
-              fill="#EB4335"
-            />
-          </svg>
-          Sign in with Google
-        </button>
-      </div>
-
-      <!-- Divider -->
-      <div class="relative py-3 sm:py-5">
-        <div class="absolute inset-0 flex items-center">
-          <div class="w-full border-t border-gray-200 dark:border-gray-800"></div>
-        </div>
-      </div>
+      <h1 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">
+        Bienvenue
+      </h1>
+      
+      <p class="text-base text-gray-500 dark:text-gray-400 max-w-xs mx-auto">
+        Connectez-vous avec votre compte Google Devoteam
+      </p>
     </div>
+
+    <!-- Bouton Google – centré -->
+    <button
+      (click)="loginWithGoogle()"
+      class="group relative w-full max-w-sm flex items-center justify-center gap-3 py-4 px-6 text-base font-semibold 
+            text-gray-800 dark:text-white 
+            bg-white dark:bg-gray-800/80 
+            border border-gray-300 dark:border-gray-600 
+            rounded-2xl 
+            shadow-md hover:shadow-xl 
+            hover:bg-gray-50 dark:hover:bg-gray-700/80 
+            focus:outline-none focus:ring-2 focus:ring-[#c0392b]/40 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-950
+            transition-all duration-300 transform hover:-translate-y-0.5 active:scale-98">
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.51h5.84c-.25 1.31-.98 2.42-2.07 3.16v2.63h3.35c1.96-1.81 3.09-4.47 3.09-7.25z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.35-2.63c-.98.66-2.23 1.06-3.93 1.06-3.02 0-5.58-2.04-6.49-4.79H.96v2.67C2.64 20.29 6.98 23 12 23z" fill="#34A853"/>
+        <path d="M5.51 14.21c-.23-.66-.36-1.37-.36-2.21s.13-1.55.36-2.21V7.34H.96C.35 8.85 0 10.39 0 12s.35 3.15.96 4.66l4.55-2.45z" fill="#FBBC05"/>
+        <path d="M12 4.98c1.64 0 3.11.56 4.27 1.66l3.19-3.19C17.46 1.01 14.97 0 12 0 6.98 0 2.64 2.71.96 6.34l4.55 2.45C6.42 6.02 8.98 4.98 12 4.98z" fill="#EA4335"/>
+      </svg>
+
+      <span>Continuer avec Google</span>
+
+      <span class="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></span>
+    </button>
+
+    <!-- Message d'erreur – même largeur que le bouton -->
+    @if (errorMessage) {
+      <div class="w-full max-w-sm flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl shadow-sm">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p class="text-sm text-red-600 dark:text-red-400">{{ errorMessage }}</p>
+      </div>
+    }
+
+    <!-- Sécurité + branding enterprise -->
+    <div class="flex items-center justify-center gap-2 text-xs text-gray-400 dark:text-gray-500 mt-10">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <span>Accès strictement réservé aux collaborateurs Devoteam</span>
+    </div>
+
   </div>
 
+  <!-- Copyright tout en bas, centré -->
+  <div class="absolute bottom-6 left-0 right-0 text-center px-6">
+    <p class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#c0392b] dark:hover:text-[#c0392b] transition-colors">
+      © 2026 Devoteam Tunisie. Tous droits réservés.
+    </p>
+  </div>
+
+</div>

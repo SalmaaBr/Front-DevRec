@@ -42,18 +42,18 @@ layer(base);
   --color-white: #ffffff;
   --color-black: #101828;
 
-  --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #9cb9ff;
-  --color-brand-400: #7592ff;
-  --color-brand-500: #465fff;
-  --color-brand-600: #3641f5;
-  --color-brand-700: #2a31d8;
-  --color-brand-800: #252dae;
-  --color-brand-900: #262e89;
-  --color-brand-950: #161950;
+  --color-brand-25: #fff5f5;
+  --color-brand-50: #ffebeb;
+  --color-brand-100: #ffd5d5;
+  --color-brand-200: #ffaaaa;
+  --color-brand-300: #ff7777;
+  --color-brand-400: #e74c3c;
+  --color-brand-500: #c0392b;
+  --color-brand-600: #a93226;
+  --color-brand-700: #922b21;
+  --color-brand-800: #7b241c;
+  --color-brand-900: #641e16;
+  --color-brand-950: #4a1010;
 
   --color-blue-light-25: #f5fbff;
   --color-blue-light-50: #f0f9ff;
@@ -864,4 +864,33 @@ pre[class*="language-"] {
 }
 pre[class*="language-"].line-numbers {
   padding-left: 2.8em !important;
+}
+.dark body {
+  @apply bg-gray-900;
+}
+
+/* Sidebar dark */
+.dark .sidebar {
+  background-color: #1a0a08;
+  border-color: rgba(192, 57, 43, 0.15);
+}
+
+/* Cards dark */
+.dark .card,
+.dark [class*="bg-white"] {
+  background-color: #1c1c1c;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Menu items actifs en dark */
+.dark .menu-item-active {
+  background-color: rgba(192, 57, 43, 0.15) !important;
+  color: #e74c3c !important;
+}
+
+
+
+/* Scrollbar dark */
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4a1010;
 }
