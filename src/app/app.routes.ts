@@ -40,7 +40,7 @@ export const routes: Routes = [
         component: FicheComponent,
         title: 'Fiches de poste',
         canActivate: [roleGuard],
-        data: { roles: ['ADMIN_RH', 'TALENT_ACQUISITION'] },
+        data: { roles: ['ADMIN_RH', 'TALENT_ACQUISITION','CONSULTANT'] },
       },
     ],
   },

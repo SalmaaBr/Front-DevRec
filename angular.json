@@ -20,13 +20,17 @@
               "zone.js"
             ],
             "allowedCommonJsDependencies": [
-               "prismjs",
-               "polylabel"
+              "prismjs",
+              "polylabel"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/fav.ico",
-              "src/assets"
+              "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              }
             ],
             "styles": [
               "src/styles.css"

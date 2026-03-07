@@ -20,36 +20,47 @@ export class AuthCallbackComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      console.log('✅Auth callback params:', params);
-      const token = params['token'];
-      const error = params['error'];
+  this.route.queryParams.subscribe(params => {
+    console.log(' Auth callback params:', params);
+    const token = params['token'];
+    const error = params['error'];
+    console.log('Error value exact:', error);
 
-      if (error) {
-        this.router.navigate(['/signin'], {
-          queryParams: { error: error }
-        });
-        return;
+    if (error) {
+      let errorCode = 'unauthorized';
+      
+      if (error === 'inactive' || error.toLowerCase().includes('autoris') || 
+          error.toLowerCase().includes('inactif')) {
+        errorCode = 'inactive';
+      } else if (error === 'not_found' || error.toLowerCase().includes('trouvé')) {
+        errorCode = 'not_found';
+      } else if (error === 'not_devoteam' || error.toLowerCase().includes('devoteam')) {
+        errorCode = 'not_devoteam';
       }
 
-      if (token) {
-        this.authService.saveToken(token);
-        const role = this.authService.getRole();
-        console.log('Role:', role);
-        switch (role) {
-          case 'ADMIN_RH':
-          case 'TALENT_ACQUISITION':
-            this.router.navigate(['/']);
-            break;
-          case 'CONSULTANT':
-            this.router.navigate(['/assistance']);
-            break;
-          default:
-            this.router.navigate(['/signin']);
-        }
-      } else {
-        this.router.navigate(['/signin']);
+      this.router.navigate(['/signin'], {
+        queryParams: { error: errorCode }
+      });
+      return;
+    }
+
+    if (token) {
+      this.authService.saveToken(token);
+      const role = this.authService.getRole();
+      switch (role) {
+        case 'ADMIN_RH':
+        case 'TALENT_ACQUISITION':
+          this.router.navigate(['/']);
+          break;
+        case 'CONSULTANT':
+          this.router.navigate(['/']);
+          break;
+        default:
+          this.router.navigate(['/signin']);
       }
-    });
-  }
+    } else {
+      this.router.navigate(['/signin']);
+    }
+  });
+}
 }
