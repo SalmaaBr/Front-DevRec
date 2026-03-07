@@ -20,16 +20,16 @@ export class AuthCallbackComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  this.route.queryParams.subscribe(params => {
-    console.log(' Auth callback params:', params);
-    const token = params['token'];
-    const error = params['error'];
-    console.log('Error value exact:', error);
+    this.route.queryParams.subscribe(params => {
+      console.log(' Auth callback params:', params);
+      const token = params['token'] ? decodeURIComponent(params['token']) : null;
+      const error = params['error'];
+      console.log('Error value exact:', error);
 
-    if (error) {
-      let errorCode = 'unauthorized';
+      if (error) {
+        let errorCode = 'unauthorized';
       
-      if (error === 'inactive' || error.toLowerCase().includes('autoris') || 
+        if (error === 'inactive' || error.toLowerCase().includes('autoris') || 
           error.toLowerCase().includes('inactif')) {
         errorCode = 'inactive';
       } else if (error === 'not_found' || error.toLowerCase().includes('trouvé')) {

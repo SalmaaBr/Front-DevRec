@@ -5,6 +5,7 @@ import { EcommerceComponent } from './pages/dashboard/ecommerce/ecommerce.compon
 import { FicheComponent } from './pages/fiche/fiche.component';
 import { NotFoundComponent } from './pages/other-page/not-found/not-found.component';
 import { AuthCallbackComponent } from './pages/auth-callback/auth-callback.component';
+import {UsersComponent} from './pages/users/users.component';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
 
@@ -42,6 +43,13 @@ export const routes: Routes = [
         canActivate: [roleGuard],
         data: { roles: ['ADMIN_RH', 'TALENT_ACQUISITION','CONSULTANT'] },
       },
+      {
+        path: 'users',
+        component: UsersComponent,
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['ADMIN_RH'] },
+        title: 'DevoRecruiter | Utilisateurs',
+},
     ],
   },
 
