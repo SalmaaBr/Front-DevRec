@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-table-header',
+  selector: '[app-table-header]',
   imports: [CommonModule],
-  template: `
-    <thead [ngClass]="className"><ng-content></ng-content></thead>
-  `,
-  styles: ``
+  template: `<ng-content></ng-content>`,
 })
 export class TableHeaderComponent {
   @Input() className = '';
+  @HostBinding('class') get classes() { return this.className; }
 }

@@ -31,11 +31,11 @@ export class ButtonComponent {
       : 'px-5 py-3.5 text-sm';
   }
 
-  get variantClasses(): string {
-    return this.variant === 'primary'
-      ? 'bg-brand-500 text-white shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300'
-      : 'bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300';
-  }
+get variantClasses(): string {
+  return this.variant === 'primary'
+    ? 'bg-[#c0392b] text-white shadow-theme-xs hover:bg-[#a93226] disabled:bg-[#e8a49a]'
+    : 'bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300';
+}
 
   get disabledClasses(): string {
     return this.disabled ? 'cursor-not-allowed opacity-50' : '';

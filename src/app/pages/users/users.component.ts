@@ -4,6 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../shared/services/auth.service';
 import { environment } from '../../../environments/environment';
 import { FormsModule } from '@angular/forms';
+import { TableComponent } from '../../shared/components/ui/table/table.component';
+import { TableHeaderComponent } from '../../shared/components/ui/table/table-header.component';
+import { TableBodyComponent } from '../../shared/components/ui/table/table-body.component';
+import { TableRowComponent } from '../../shared/components/ui/table/table-row.component';
+import { TableCellComponent } from '../../shared/components/ui/table/table-cell.component';
+import { ModalComponent } from '../../shared/components/ui/modal/modal.component';
+import { ButtonComponent } from '../../shared/components/ui/button/button.component';
 
 interface User {
   id: number;
@@ -20,7 +27,7 @@ interface User {
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TableComponent, TableHeaderComponent, TableBodyComponent, TableRowComponent, TableCellComponent, ModalComponent, ButtonComponent],
   templateUrl: './users.component.html',
 })
 export class UsersComponent implements OnInit {
@@ -36,6 +43,13 @@ export class UsersComponent implements OnInit {
   searchQuery = '';
   filterRole = '';
   filterStatus = '';
+
+  currentPage = 1;
+  itemsPerPage = 10;
+  totalPages = 1;
+
+  sortColumn = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(
     private http: HttpClient,
@@ -69,6 +83,36 @@ export class UsersComponent implements OnInit {
       });
   }
 
+  get paginatedUsers(): User[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredUsers.slice(start, start + this.itemsPerPage);
+  }
+
+  get pages(): number[] {
+    this.totalPages = Math.ceil(this.filteredUsers.length / this.itemsPerPage);
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  goToPage(page: number): void {
+  if (page >= 1 && page <= this.totalPages) {
+    this.currentPage = page;
+  }
+}
+
+applySort(): void {
+  if (!this.sortColumn) return;
+  
+  this.filteredUsers.sort((a, b) => {
+    const valA = a[this.sortColumn as keyof User] ?? '';
+    const valB = b[this.sortColumn as keyof User] ?? '';
+    const cmp = String(valA).localeCompare(String(valB));
+    return this.sortDirection === 'asc' ? cmp : -cmp;
+  });
+
+  this.currentPage = 1;
+}
+
+
   applyFilters(): void {
     this.filteredUsers = this.users.filter(u => {
       const matchSearch = !this.searchQuery ||
@@ -80,6 +124,8 @@ export class UsersComponent implements OnInit {
         (this.filterStatus === 'actif' ? u.isActivated : !u.isActivated);
       return matchSearch && matchRole && matchStatus;
     });
+    this.applySort();
+    this.currentPage = 1;
   }
 
   startEdit(user: User): void {

@@ -1,21 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-table-cell',
+  selector: '[app-table-cell]',
   imports: [CommonModule],
-  template: `
-    @if (isHeader) {
-    <ng-container>
-      <th [ngClass]="className"><ng-content></ng-content></th>
-    </ng-container>
-    } @else {
-    <td [ngClass]="className"><ng-content></ng-content></td>
-    }
-  `,
+  template: `<ng-content></ng-content>`,
   styles: ``
 })
 export class TableCellComponent {
   @Input() isHeader = false;
   @Input() className = '';
+  @HostBinding('class') get classes() { return this.className; }
 }
