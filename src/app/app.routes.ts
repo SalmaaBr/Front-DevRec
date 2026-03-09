@@ -8,13 +8,14 @@ import { AuthCallbackComponent } from './pages/auth-callback/auth-callback.compo
 import {UsersComponent} from './pages/users/users.component';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
+import {AssistanceComponent} from './pages/assistance/assistance.component'
 
 export const routes: Routes = [
   // Page de login
   {
     path: 'signin',
     component: SignInComponent,
-    title: 'Connexion | DevoRecruiter',
+    title: 'Connexion',
   },
 
   // Callback Google OAuth → reçoit le token
@@ -48,8 +49,15 @@ export const routes: Routes = [
         component: UsersComponent,
         canActivate: [authGuard, roleGuard],
         data: { roles: ['ADMIN_RH'] },
-        title: 'DevoRecruiter | Utilisateurs',
-},
+        title: 'Utilisateurs',
+      },
+      {
+        path: 'assistance',
+        component: AssistanceComponent,
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['ADMIN_RH', 'CONSULTANT'] },
+        title: 'Assistance',
+      },
     ],
   },
 
