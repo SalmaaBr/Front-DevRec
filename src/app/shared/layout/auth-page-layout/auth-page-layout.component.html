@@ -1,0 +1,42 @@
+<div class="relative min-h-screen bg-white z-1 dark:bg-gray-900">
+  <div class="flex min-h-screen lg:flex-row flex-col">
+    
+    <!-- LEFT PANEL -->
+    <ng-content></ng-content>
+
+    <!-- RIGHT PANEL -->
+    <div class="flex-1 bg-gradient-to-br from-[#5c1a12] via-[#2d0c08] to-[#110402] dark:from-[#1a0a08] dark:via-[#0d0302] dark:to-[#080101] relative overflow-hidden text-white hidden lg:flex items-center justify-center">
+      
+      <!-- Cercles décoratifs -->
+      <div class="absolute bottom-[-150px] right-[-100px] w-[500px] h-[500px] rounded-full border border-white/5 pointer-events-none"></div>
+      <div class="absolute bottom-[-60px] right-[60px] w-[300px] h-[300px] rounded-full border border-white/5 pointer-events-none"></div>
+      <div class="absolute top-[-80px] left-[-80px] w-[350px] h-[350px] rounded-full border border-white/5 pointer-events-none"></div>
+
+      <div class="max-w-md text-center px-6">
+        <!-- Badge -->
+        <span class="inline-block bg-[#c0392b] text-white text-xs font-bold tracking-widest px-4 py-1 rounded-full mb-4">
+          SOLUTIONS ENTREPRISE
+        </span>
+
+        <!-- Titre principal -->
+        <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+          Recrutement intelligent piloté par l'IA
+        </h2>
+        <div class="w-16 h-1 bg-[#c0392b] rounded-full mx-auto mb-6"></div>
+
+        <!-- Résumé court -->
+        <p class="text-lg leading-relaxed text-white/80">
+          DevoRecruiter centralise et automatise le recrutement chez Devoteam : 
+          de la publication des fiches de poste à la sélection des meilleurs candidats, 
+          avec une analyse intelligente des CV pour gagner du temps à chaque étape.
+        </p>
+      </div>
+    </div>
+
+    <!-- Toggle nuit/jour -->
+    <div class="fixed z-50 hidden bottom-6 right-6 sm:block">
+      <app-theme-toggle-two />
+    </div>
+
+  </div>
+</div>

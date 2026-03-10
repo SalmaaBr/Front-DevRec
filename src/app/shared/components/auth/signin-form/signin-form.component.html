@@ -1,0 +1,85 @@
+<div class="relative flex flex-col justify-center items-center flex-1 w-full max-w-md mx-auto px-6 sm:px-8 py-12 min-h-screen">
+
+  <!-- Contenu principal centré -->
+  <div class="w-full flex flex-col items-center space-y-10">
+
+    <!-- Logo Devoteam centré en haut (aligné avec le form) -->
+    <div class="mb-12 text-center">
+      <img 
+        src="assets/images/logo_devoteam.png" 
+        alt="Devoteam" 
+        class="h-20 sm:h-24 w-auto mb-10 mx-auto block drop-shadow-md"
+      />
+      
+      <div class="flex items-center gap-3 mb-5 justify-center">
+        <div class="w-2 h-10 rounded-full bg-[#c0392b]"></div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          DevoRecruiter
+        </h2>
+      </div>
+
+      <h1 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-3">
+        Bienvenue
+      </h1>
+      
+      <p class="text-base text-gray-500 dark:text-gray-400 max-w-xs mx-auto">
+        Connectez-vous avec votre compte Google Devoteam
+      </p>
+    </div>
+
+    <!-- Bouton Google – centré -->
+    <button
+      (click)="loginWithGoogle()"
+      class="group relative w-full max-w-sm flex items-center justify-center gap-3 py-4 px-6 text-base font-semibold 
+            text-gray-800 dark:text-white 
+            bg-white dark:bg-gray-800/80 
+            border border-gray-300 dark:border-gray-600 
+            rounded-2xl 
+            shadow-md hover:shadow-xl 
+            hover:bg-gray-50 dark:hover:bg-gray-700/80 
+            focus:outline-none focus:ring-2 focus:ring-[#c0392b]/40 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-950
+            transition-all duration-300 transform hover:-translate-y-0.5 active:scale-98">
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.51h5.84c-.25 1.31-.98 2.42-2.07 3.16v2.63h3.35c1.96-1.81 3.09-4.47 3.09-7.25z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.35-2.63c-.98.66-2.23 1.06-3.93 1.06-3.02 0-5.58-2.04-6.49-4.79H.96v2.67C2.64 20.29 6.98 23 12 23z" fill="#34A853"/>
+        <path d="M5.51 14.21c-.23-.66-.36-1.37-.36-2.21s.13-1.55.36-2.21V7.34H.96C.35 8.85 0 10.39 0 12s.35 3.15.96 4.66l4.55-2.45z" fill="#FBBC05"/>
+        <path d="M12 4.98c1.64 0 3.11.56 4.27 1.66l3.19-3.19C17.46 1.01 14.97 0 12 0 6.98 0 2.64 2.71.96 6.34l4.55 2.45C6.42 6.02 8.98 4.98 12 4.98z" fill="#EA4335"/>
+      </svg>
+
+      <span>Continuer avec Google</span>
+
+      <span class="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></span>
+    </button>
+
+    <!-- Message d'erreur – même largeur que le bouton -->
+    @if (errorMessage) {
+      <div class="w-full max-w-sm flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl shadow-sm">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p class="text-sm text-red-600 dark:text-red-400">{{ errorMessage }}</p>
+      </div>
+    }
+
+    <!-- Sécurité + branding enterprise -->
+    <div class="flex items-center justify-center gap-2 text-xs text-gray-400 dark:text-gray-500 mt-10">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <span>Accès strictement réservé aux collaborateurs Devoteam</span>
+    </div>
+
+  </div>
+
+  <!-- Copyright tout en bas, centré -->
+  <div class="absolute bottom-6 left-0 right-0 text-center px-6">
+    <p class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#c0392b] dark:hover:text-[#c0392b] transition-colors">
+      © 2026 Devoteam Tunisie. Tous droits réservés.
+    </p>
+  </div>
+
+</div>

@@ -1,0 +1,67 @@
+<div class="upload-container">
+  <h2>Import de fichier</h2>
+  
+  <!-- Zone de drop/upload -->
+  <div class="upload-area" 
+       [class.dragover]="isDragover"
+       (dragover)="onDragOver($event)"
+       (dragleave)="onDragLeave($event)"
+       (drop)="onDrop($event)">
+    
+    <input type="file" 
+           id="fileInput" 
+           class="file-input" 
+           (change)="onFileSelected($event)"
+           accept=".jpg,.jpeg,.png,.gif,.pdf,.txt,.doc,.docx">
+    
+    <label for="fileInput" class="upload-label">
+      <span class="upload-icon">📁</span>
+      <span class="upload-text">
+        <strong>Cliquez pour sélectionner</strong> ou glissez-déposez
+      </span>
+      <span class="upload-hint">Fichiers acceptés : Images, PDF, TXT, DOC</span>
+    </label>
+  </div>
+
+  <!-- Message d'erreur -->
+  <div class="error-message" *ngIf="uploadError">
+    {{ uploadError }}
+  </div>
+
+  <!-- Aperçu du fichier sélectionné -->
+  <div class="file-preview" *ngIf="selectedFile && !isUploading">
+    <div class="file-info">
+      <span class="file-icon">{{ getFileIcon() }}</span>
+      <div class="file-details">
+        <span class="file-name">{{ selectedFile.name }}</span>
+        <span class="file-meta">{{ formatFileSize(fileSize) }} • {{ fileType }}</span>
+      </div>
+      <button class="remove-btn" (click)="removeFile()" title="Supprimer">✕</button>
+    </div>
+
+    <!-- Aperçu image -->
+    <div class="image-preview" *ngIf="filePreview">
+      <img [src]="filePreview" [alt]="selectedFile.name">
+    </div>
+
+    <!-- Bouton d'upload -->
+    <button class="upload-btn" 
+            (click)="uploadFile()" 
+            [disabled]="isUploading">
+      Importer le fichier
+    </button>
+  </div>
+
+  <!-- Barre de progression -->
+  <div class="upload-progress" *ngIf="isUploading">
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="uploadProgress"></div>
+    </div>
+    <span class="progress-text">{{ uploadProgress }}%</span>
+  </div>
+
+  <!-- Message de succès -->
+  <div class="success-message" *ngIf="uploadSuccess">
+    ✓ Fichier importé avec succès !
+  </div>
+</div>
